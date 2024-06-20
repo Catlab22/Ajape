@@ -1,0 +1,25 @@
+import random
+import string
+import time
+
+def timer(func):
+    def wrapper(*args, **kwags):
+        start_time = time.time()
+        result = func(*args, **kwags)
+        end_time = time.time()
+        print(f"Время выполнения: {end_time - start_time} c.")
+        return result
+    return wrapper
+
+@timer
+def generate_name(length: int=100000) -> str:
+    aplphabet = string.ascii_lowercase + string.digits
+
+    name = " ".join(random.choice(aplphabet) for _ in range(length))
+
+    name += "_bot"
+
+    return name
+
+bot_name = generate_name()
+print(f"{bot_name}")
